@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>이메일로 로그인</title>
+</head>
+<style>
+.loginHeadLine {
+	position: relative;
+	border: 1px solid black;
+	width: 360px;
+}
+
+.loginInput {
+	position: relative;
+	border: 1px solid red;
+	width: 360px;
+	height: 150px;
+}
+
+.loginHelpText {
+	position: relative;
+	border: 1px solid blue;
+	width: 340px;
+	padding: 10px;
+	height: 150px;
+	bottom: 17px;
+	right: 1px;
+}
+
+.footerButtons {
+	position: relative;
+	border: 1px solid green;
+	width: 340px;
+	height: 100px;
+}
+
+.button {
+	position: relative;
+	background-color: gray;
+	border: 1px;
+	border-radius: 5px;
+	color: white;
+	padding: 15px 32px;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+	left: 50px;
+}
+
+.textPadding {
+	padding: 10px;
+	font-size: 15px;
+}
+
+.leftButton {
+	left: 20px;
+}
+
+.rightButton {
+	right: 20px;
+}
+</style>
+<body>
+	<div class="loginHeadLine">
+		<div align="center">
+			<h2>로그인</h2>
+		</div>
+	</div>
+	<form action="userLoginAction.jsp" method="post">
+		<div class="loginInput">
+			<p>
+				아이디&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="userID"
+					value="" class="textPadding" placeholder="아이디를 입력해주세요"
+					required="required" />
+			</p>
+			<p>
+				비밀번호&nbsp; <input type="password" name="userPW" class="textPadding"
+					value="" placeholder="비밀번호를 입력해주세요" required="required" />
+			</p>
+			<p>
+				<label> <input type="checkbox" name="auto_login"
+					id="auto_login" />로그인 상태 유지
+				</label>
+			</p>
+			<div class="loginHelpText">
+				<p>
+					<a href="">아이디/비밀번호를 잊으셨나요?</a>
+				</p>
+				<p>
+					아이디가 없습니까? <a href="index.jsp">회원가입 시작</a>
+				</p>
+				
+				
+					<button type="submit" class="button leftButton" value="로그인">로그인</button>
+
+					<button type="button" class="button rightButton"
+						onclick="location.href='login.html'">취소</button>
+				
+				
+			</div>
+		</div>
+
+	</form>
+</body>
+</html>
