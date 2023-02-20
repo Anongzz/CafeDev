@@ -50,6 +50,35 @@ public class UserDAO {
 		}
 		return -1;
 	}
+	
+	public int order(String drinkName, String drinkPrice,int count) {
+		String SQL = "INSERT INTO orderlist VALUES (?,?,"+count+")";
+		try {
+			System.out.println("order함수 진입");
+			Connection conn = DatabaseUtil.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, drinkName);
+			pstmt.setString(2, drinkPrice);
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	
+	public int summitDrink() {
+		String SQL = "TRUNCATE orderlist";
+		try {
+			Connection conn = DatabaseUtil.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			return pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return -1;
+	}
+	
 	public int login(String userID, String userPW) throws SQLException, IOException {
 		
 		String SQL = "SELECT userID, userPW FROM cafeuser WHERE userID=? AND userPW=?" ;

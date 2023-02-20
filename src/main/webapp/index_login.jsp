@@ -279,7 +279,7 @@
       <div class="orderDiv">
         <br />
         <div class="orderButtonDiv orderLeft">
-          <button type="button" class="orderButtonDesign" onclick="location.href='order.jsp'">포장</button>
+          <button type="button" class="orderButtonDesign" onclick="location.href='order_edit.mvc?data1=coffee'">포장</button>
         </div>
         <div class="orderButtonDiv orderRight">
           <button type="button" class="orderButtonDesign" onclick="location.href='order.jsp'">매장</button>

@@ -11,7 +11,7 @@
 	position: relative;
 	border: 1px solid black;
 	width: 500px;
-	height: 750px;
+	height: 850px;
 }
 .mainArea p {
 	border-bottom: 1px solid silver;
@@ -60,6 +60,11 @@
 	padding: 10px 10px;
 }
 
+.drinkList:hover{
+	border: 2px solid red;
+	border-radius: 20%;
+}
+
 input[type="submit"]{
   width: 100%;
   height: 50px;
@@ -103,6 +108,7 @@ ResultSet rs = pstmt.executeQuery();
 %>
 <h1>주문페이지</h1>
 <div class="mainArea">
+	
 	<p><b>상품 목록</b></p>
 	<div class="categoryArea">
 			<input type="button" value="커피" onclick="location.href='order_edit.mvc?data1=coffee'">
@@ -120,7 +126,8 @@ ResultSet rs = pstmt.executeQuery();
 			%>
 		<div class="drinkList">
 		<div style="text-align: center; cursor: pointer;">
-			<img alt="add_building" src="images/<%=drinkIMG %>" width="100" height="100">
+			<img id<%=drinkName %> alt="add_building" src="images/<%=drinkIMG %>" width="100" height="100" 
+			onclick="(function(){if(confirm('<%=drinkName%>를 장바구니에 추가하시겠습니까?')){location.href='order_count.mvc?data1=<%=drinkName%>&data2=<%=drinkPrice %>';}else{}})();">
 		<br><b><%=drinkName %></b>
 		<br><b><%=drinkPrice %>원</b>
 		</div>
@@ -128,10 +135,38 @@ ResultSet rs = pstmt.executeQuery();
 		</div>
 		<%} %>
 	</div>
+	<div>
+	
+	</div>
 	<div class="orderSummit">
-	<input type="submit" value="주문하기"><br><br>
+	<b>↓주문 제품↓</b> <br>
+<% 
+	String sql2 = "SELECT orderName, sum(orderPrice), sum(orderCount) FROM orderlist GROUP BY orderName";
+	pstmt= conn.prepareStatement(sql2);
+	rs = pstmt.executeQuery();
+	String orderlist ="";
+	while(rs.next()){
+		String orderName = rs.getString("orderName");
+		String orderPrice = rs.getString("sum(orderPrice)");
+		String orderCount = rs.getString("sum(orderCount)");
+		orderlist = orderName +", 가격: "+orderPrice+", 개수: "+orderCount;
+	%>
+	
+	<%=orderlist %><br>
+	
+	<%} %>
+	<input type="submit" value="주문하기" onclick="(function(){if(confirm('주문 하시겠습니까?')){location.href='order_summit.jsp';}else{}})();" ><br><br>
 	<a href="index_login.jsp" style="position:absolute; left: 40%;">뒤로가기</a>
 	</div>
+	
+	
+	
+	<!-- <div style="position: absolute; width: 200px; height: 200px; background-color: yellow; left:10%; top: 25%;">
+		<div style="position: relative; width: 30px; height: 30px; background-color: red; ">
+		
+		</div>
+	</div> -->
 </div>
+
 </body>
 </html>
